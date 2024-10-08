@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: purple;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #111;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(128, 0, 128, 0.3);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        input[type="file"], select {
+            color: purple;
+            background-color: #222;
+            border: 1px solid purple;
+            padding: 0.5rem;
+            border-radius: 5px;
+            width: 100%;
+        }
+        input[type="submit"] {
+            background-color: purple;
+            color: black;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover {
+            background-color: #a020f0;
+        }
+        #progress-container {
+            display: none;
+            margin-top: 1rem;
+        }
+        #progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 5px;
+        }
+        #progress {
+            width: 0%;
+            height: 30px;
+            background-color: purple;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+        }
+        .file-section {
+            margin-bottom: 1rem;
+        }
+        .file-section h3 {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sitemap Generator</h1>
+        <form method="post" enctype="multipart/form-data" id="sitemap-form">
+            <div class="file-section">
+                <h3>Homepage CSV:</h3>
+                <select name="homepage_select">
+                    <option value="">Select a previously uploaded file</option>
+                    {% for file in homepage_files %}
+                    <option value="{{ file }}">{{ file }}</option>
+                    {% endfor %}
+                </select>
+                <p>Or upload a new file:</p>
+                <input type="file" name="homepage_file" id="homepage_file">
+            </div>
+            <div class="file-section">
+                <h3>Internal Pages CSV:</h3>
+                <select name="internal_select">
+                    <option value="">Select a previously uploaded file</option>
+                    {% for file in internal_files %}
+                    <option value="{{ file }}">{{ file }}</option>
+                    {% endfor %}
+                </select>
+                <p>Or upload a new file:</p>
+                <input type="file" name="internal_file" id="internal_file">
+            </div>
+            <input type="submit" value="Generate Sitemaps">
+        </form>
+        <div id="progress-container">
+            <h3 id="status"></h3>
+            <div id="progress-bar">
+                <div id="progress"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('sitemap-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    window.location.href = '/success';
+                }
+            };
+            xhr.send(formData);
+            document.getElementById('progress-container').style.display = 'block';
+            updateProgress();
+        });
+
+        function updateProgress() {
+            fetch('/progress')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status').textContent = data.status;
+                    document.getElementById('progress').style.width = data.percentage + '%';
+                    document.getElementById('progress').textContent = data.percentage + '%';
+                    if (data.percentage < 100) {
+                        setTimeout(updateProgress, 1000);
+                    }
+                });
+        }
+    </script>
+</body>
+</html>
