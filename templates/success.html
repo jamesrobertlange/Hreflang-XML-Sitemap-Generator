@@ -25,6 +25,16 @@
         h1 {
             margin-bottom: 1rem;
         }
+        .flash-messages {
+            margin-bottom: 1rem;
+        }
+        .flash-message {
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+            background-color: #222;
+            border: 1px solid purple;
+        }
         a {
             color: #a020f0;
             text-decoration: none;
@@ -42,6 +52,16 @@
 </head>
 <body>
     <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="flash-messages">
+                {% for message in messages %}
+                <div class="flash-message">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        
         <h1>Sitemaps Generated Successfully!</h1>
         <p>Your sitemaps have been generated and saved.</p>
         <a href="/download_compressed">Download Compressed Sitemaps</a>

@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.ariat.com/se/en/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.ariat.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.ariat.com/"/>
+    <xhtml:link rel="alternate" hreflang="de-at" href="https://www.ariat.com/at/de/"/>
+    <xhtml:link rel="alternate" hreflang="en-be" href="https://www.ariat.com/be/en/"/>
+    <xhtml:link rel="alternate" hreflang="de-ch" href="https://www.ariat.com/ch/de/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.ariat.com/de/de/"/>
+    <xhtml:link rel="alternate" hreflang="en-dk" href="https://www.ariat.com/dk/en/"/>
+    <xhtml:link rel="alternate" hreflang="en-fi" href="https://www.ariat.com/fi/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.ariat.com/fr/fr/"/>
+    <xhtml:link rel="alternate" hreflang="en-gb" href="https://www.ariat.com/gb/en/"/>
+    <xhtml:link rel="alternate" hreflang="en-ie" href="https://www.ariat.com/ie/en/"/>
+    <xhtml:link rel="alternate" hreflang="en-it" href="https://www.ariat.com/it/en/"/>
+    <xhtml:link rel="alternate" hreflang="en-nl" href="https://www.ariat.com/nl/en/"/>
+    <xhtml:link rel="alternate" hreflang="en-no" href="https://www.ariat.com/no/en/"/>
+    <xhtml:link rel="alternate" hreflang="en-se" href="https://www.ariat.com/se/en/"/>
+  </url>
+</urlset>
